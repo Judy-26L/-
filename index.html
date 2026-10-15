@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DREAMS // Digital Reality</title>
+    <style>
+        /* --- CYBERPUNK NEON STYLES (PURE CSS & GRADIENTS) --- */
+        :root {
+            --bg-color: #0b0914;
+            --neon-cyan: #00f0ff;
+            --neon-pink: #ff0055;
+            --text-color: #ffffff;
+            --card-bg: rgba(25, 15, 40, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(255, 0, 85, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 50%);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        #greeting {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(45deg, #fff, var(--neon-pink), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 85, 0.6));
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--neon-cyan);
+            padding: 0.8rem 2.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--neon-cyan);
+            box-shadow: 0 0 25px var(--neon-cyan);
+            color: #000;
+        }
+
+        /* --- TIMER SECTION --- */
+        .timer-section {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .timer-box {
+            background: var(--card-bg);
+            border: 1px solid var(--neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+            padding: 1rem;
+            min-width: 90px;
+            border-radius: 4px;
+        }
+
+        .timer-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--neon-pink);
+        }
+
+        /* --- REGISTRATION FORM SECTION --- */
+        .form-section {
+            max-width: 500px;
+            margin: 4rem auto;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-right: 4px solid var(--neon-cyan);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .form-section h2 {
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #444;
+            color: #fff;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 8px rgba(255, 0, 85, 0.3);
+        }
+
+        .form-section .btn {
+            width: 100%;
+            border-color: var(--neon-pink);
+        }
+
+        .form-section .btn:hover {
+            background: var(--neon-pink);
+            box-shadow: 0 0 25px var(--neon-pink);
+            color: #fff;
+        }
+
+        /* --- MODAL WINDOW --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 10, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #141124;
+            border: 2px solid var(--neon-cyan);
+            padding: 2.5rem;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--neon-cyan);
+        }
+
+        /* --- RESPONSIVE DESIGN (ADAPTIVE) --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .timer-container { gap: 0.8rem; }
+            .timer-box { min-width: 70px; padding: 0.7rem; }
+            .timer-box span { font-size: 1.5rem; }
+            .form-section { margin: 2rem 1rem; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header>
+        <div id="greeting">Connecting to Server...</div>
+        <h1>Dreams</h1>
+        <p class="tagline">Explore the neon landscapes of the mind.</p>
+        <button class="btn" id="openModalBtn">View Server Manifest</button>
+    </header>
+
+    <!-- COUNTDOWN TIMER SECTION -->
+    <section class="timer-section">
+        <h2>Next Synchronization Event</h2>
+        <div class="timer-container">
+            <div class="timer-box"><span id="days">00</span>Days</div>
+            <div class="timer-box"><span id="hours">00</span>Hours</div>
+            <div class="timer-box"><span id="minutes">00</span>Min</div>
+            <div class="timer-box"><span id="seconds">00</span>Sec</div>
+        </div>
+    </section>
+
+    <!-- REGISTRATION FORM SECTION -->
+    <section class="form-section">
+        <h2>Enter the Dream Network</h2>
+        <form id="regForm" onsubmit="alert('Access key requested. Welcome to Dreams!'); return false;">
+            <div class="input-group">
+                <label for="username">User ID / Handle</label>
+                <input type="text" id="username" required placeholder="Your alias">
+            </div>
+            <div class="input-group">
+                <label for="email">Comms Frequency (Email)</label>
+                <input type="email" id="email" required placeholder="you@domain.com">
+            </div>
+            <button type="submit" class="btn">Connect</button>
+        </form>
+    </section>
+
+    <!-- POPUP MODAL WINDOW -->
+    <div class="modal" id="rulesModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h3 style="color: var(--neon-cyan); margin-bottom: 1rem; text-transform: uppercase;">System Protocols</h3>
+            <p style="text-align: left; font-size: 0.95rem; color: #eee;">
+                1. Keep your dream node active.<br>
+                2. Custom CSS shaders are operational.<br>
+                3. Enjoy the neon matrix simulation.
+            </p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT PROGRAMMING -->
+    <script>
+        // 1. DYNAMIC GREETING BY TIME OF DAY
+        const greetingEl = document.getElementById('greeting');
+        const hoursNow = new Date().getHours();
+        let greetingText = "Welcome to Dreams";
+
+        if (hoursNow >= 5 && hoursNow < 12) {
+            greetingText = "Good Morning, Dreamer";
+        } else if (hoursNow >= 12 && hoursNow < 18) {
+            greetingText = "Good Day, Wanderer";
+        } else {
+            greetingText = "Good Evening, Visionary";
+        }
+        greetingEl.textContent = `// ${greetingText} //`;
+
+        // 2. COUNTDOWN TIMER LOGIC
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 5); // 5 days countdown
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = d.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = h.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = m.toString().padStart(2, '0');
